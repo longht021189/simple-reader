@@ -3,11 +3,11 @@ package parser
 type jsonParser struct {
 	keyParts []string
 	key      string
-	data     string
+	data     []byte
 	output   []interface{}
 }
 
-func GetJSON(key, data string) ([]interface{}, error) {
+func GetJSON(key string, data []byte) ([]interface{}, error) {
 	j := &jsonParser{
 		key:  key,
 		data: data,

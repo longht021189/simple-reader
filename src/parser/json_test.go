@@ -11,7 +11,7 @@ func TestJSONParseWithMap(t *testing.T) {
 
 	j := &jsonParser{
 		key:  "a.b.c",
-		data: "",
+		data: []byte{},
 	}
 
 	r := map[string]interface{}{
@@ -41,7 +41,7 @@ func TestJSONParseWithArray(t *testing.T) {
 
 	j := &jsonParser{
 		key:  "a.b.c",
-		data: "",
+		data: []byte{},
 	}
 
 	r := map[string]interface{}{
@@ -77,7 +77,7 @@ func TestJSONParseWithError(t *testing.T) {
 	r := "test"
 	j := &jsonParser{
 		key:  "a.b.c",
-		data: "",
+		data: []byte{},
 	}
 
 	j.keyParts = strings.Split(j.key, ".")

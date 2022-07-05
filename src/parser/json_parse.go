@@ -1,13 +1,21 @@
 package parser
 
 import (
+	"encoding/json"
 	"reflect"
 	"strings"
 )
 
 func (j *jsonParser) Parse() error {
 	j.keyParts = strings.Split(j.key, ".")
-	return j.parse(0, nil)
+
+	var raw interface{}
+	err := json.Unmarshal(j.data, &raw)
+	if err != nil {
+		return err
+	}
+
+	return j.parse(0, raw)
 }
 
 func (j *jsonParser) parse(index int, raw interface{}) error {
