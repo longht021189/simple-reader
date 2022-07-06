@@ -40,7 +40,7 @@ func (j *jsonParser) parse(index int, raw interface{}) error {
 	case reflect.Map:
 		currentKey := j.keyParts[index]
 		item := value.MapIndex(reflect.ValueOf(currentKey))
-		if !item.IsNil() {
+		if item.IsValid() {
 			err := j.parse(index+1, item.Interface())
 			if err != nil {
 				return err
