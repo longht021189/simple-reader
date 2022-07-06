@@ -1,6 +1,7 @@
 package parser
 
 import (
+	"bytes"
 	"encoding/json"
 	"reflect"
 	"strings"
@@ -10,7 +11,9 @@ func (j *jsonParser) Parse() error {
 	j.keyParts = strings.Split(j.key, ".")
 
 	var raw interface{}
-	err := json.Unmarshal(j.data, &raw)
+	decoder := json.NewDecoder(bytes.NewBuffer(j.data))
+	decoder.UseNumber()
+	err := decoder.Decode(&raw)
 	if err != nil {
 		return err
 	}
